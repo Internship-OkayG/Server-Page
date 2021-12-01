@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div id="header">
+          <div id="developer">
+            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+            <h3>User</h3>
+          </div>
+          <div id="status">
+            <div id="server">
+              <div id="d-flex flex-row">
+                <div class="d-flex">
+                  <div>Server Name:</div>
+                  <select class="form-select" aria-label="Default select example" v-model="serverSelected">
+                    <option value="">Servers</option>
+                    <option v-for="server in servers" :value="server">{{server.name}}</option>
+                  </select>
+                </div>
+                <p>IP {{ipAddress}}</p>
+              </div>
+            </div>
+            <div>
+              <div class="d-flex">
+                <div>Service Status:</div>
+                <select class="form-select" aria-label="Default select example" v-model="optionSelected">
+                  <option v-for="status in optionsStatus" :value="status">{{status}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="function col-9">
+            <div class="d-flex flex-end justify-content-end">
+             <select id="functionFilter" class="form-select w-25" aria-label="Default select example" v-model="serviceSelected">
+              <option value="">Services</option>
+               <option v-for="service in servicesAvaliable" :value="service">{{service.name}}</option>
+             </select>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row" v-if="serviceCheck" v-for="ser in serviceCheck">
+          <div class="col-3">
+            <div class="pie">
+              <p>{{ser.name}}</p>
+              <div class="progress-circle" :class="[ser.storage > 50 ? `over50 p${ser.storage}` : 'p'+ser.storage]">
+                <span>{{ser.storage}}%</span>
+                <div class="left-half-clipper">
+                   <div class="first50-bar"></div>
+                   <div class="value-bar"></div>
+                </div>
+             </div>
+            </div>
+            <select id="functionFilter" class="form-select mt-4 mx-2" aria-label="Default select example" v-model="ser.functionSelected">
+              <option value="">Function</option>
+              <option v-for="f in ser.functions" :value="f">{{f.name}}</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <div class="chart">
+            </div>
+            <div class="functionDisplay">
+              <span v-if="ser.functionSelected">
+                <button class="btn button" :class="[ser.functionSelected.status === 'OK' ? 'btn-success' : 'btn-danger']" >{{ser.functionSelected.name}}</button>
+              </span>
+              <span v-else>
+                <button v-for="s in ser.functions" class="btn button" :class="[s.status === 'OK' ? 'btn-success' : 'btn-danger']">{{s.name}}</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="errors">
+              <h2>Errors in last 24 hours</h2>
+              <button class="btn btn-danger button">{{errors(ser)}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
