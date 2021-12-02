@@ -30,20 +30,26 @@ body {
 #developer{
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 #status{
     display: flex;
     /* flex-direction:column; */
-    align-items: center;
+    /* align-items: center; */
     justify-content:space-between;
     width: auto;
+}
+
+.form-select{
+    padding: 0;
+    height: 30px;
 }
 
 #server{
   margin-right: 10px;
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
 }
 
 #server .btn{
@@ -253,7 +259,7 @@ p{
 #functionFilter{
     background-color: white;
     border-radius: 40px;
-    padding: 10px;
+    padding: 0 0 0 10px;
     width: 80%;
 }
 

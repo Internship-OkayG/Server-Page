@@ -18,6 +18,9 @@ var vm = new Vue({
           show: true,
           showForSingleSeries: true,
         },
+        stroke: {
+          curve: 'smooth',
+        }
       },
       serverSelected: "",
       serviceSelected: "",

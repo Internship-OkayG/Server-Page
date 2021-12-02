@@ -18,21 +18,19 @@
       <div class="container">
         <div id="header">
           <div id="developer">
-            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar me-2">
             <h3>User</h3>
           </div>
           <div id="status">
             <div id="server">
-              <div id="d-flex flex-row">
-                <div class="d-flex">
-                  <div>Server Name:</div>
+                <div class="d-flex ">
+                  <h6 class="">Server Name:</h6>
                   <select class="form-select" aria-label="Default select example" v-model="serverSelected">
                     <option value="">Servers</option>
                     <option v-for="server in servers" :value="server">{{server.name}}</option>
                   </select>
                 </div>
-                <p>IP {{ipAddress}}</p>
-              </div>
+                <div>IP {{ipAddress}}</div>
             </div>
             <div>
               <div class="d-flex">
@@ -75,8 +73,9 @@
             </select>
           </div>
           <div class="col-6">
-            <div class="chart">
-            </div>
+            <div id="chart">
+              <apexchart  width="500" type="line" :options="options" :series="lineChart(ser)"></apexchart>
+          </div>
             <div class="functionDisplay">
               <span v-if="ser.functionSelected">
                 <button class="btn button" :class="[ser.functionSelected.status === 'OK' ? 'btn-success' : 'btn-danger']" >{{ser.functionSelected.name}}</button>
